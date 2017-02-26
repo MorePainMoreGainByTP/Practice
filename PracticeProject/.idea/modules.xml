@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/PracticeProject.iml" filepath="$PROJECT_DIR$/PracticeProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" filepath="$PROJECT_DIR$/ViewPagerIndicator/ViewPagerIndicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mediarecorder/mediarecorder.iml" filepath="$PROJECT_DIR$/mediarecorder/mediarecorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pullupdatelistview/pullupdatelistview.iml" filepath="$PROJECT_DIR$/pullupdatelistview/pullupdatelistview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smscheck/smscheck.iml" filepath="$PROJECT_DIR$/smscheck/smscheck.iml" />
+    </modules>
+  </component>
+</project>
