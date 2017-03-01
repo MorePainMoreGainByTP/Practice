@@ -38,6 +38,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rec_bg_corner_white_transparent"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/curr_distance" />
+
+            <TextView
+                android:id="@+id/textview_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unknown"
+                android:textColor="@color/tomato"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <Button
             android:layout_width="160dp"
             android:layout_height="40dp"
@@ -62,24 +85,24 @@
             android:padding="5dp">
 
             <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/location"
-                android:id="@+id/imageView2" />
+                android:src="@mipmap/location" />
         </LinearLayout>
+
         <CheckedTextView
-            android:onClick="switchSatellite"
-            android:layout_marginRight="5dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:padding="3dp"
-            android:drawableTop="@mipmap/satellite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/rec_bg_corner_white"
+            android:drawableTop="@mipmap/satellite"
+            android:onClick="switchSatellite"
+            android:padding="3dp"
             android:text="@string/satellite_map"
-            android:textSize="@dimen/ttTextSize"
-            />
+            android:textSize="@dimen/ttTextSize" />
     </RelativeLayout>
 
 </LinearLayout>

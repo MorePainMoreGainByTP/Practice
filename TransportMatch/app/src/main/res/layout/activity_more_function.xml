@@ -8,8 +8,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/second_bg">
-
+        >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/second_bg" />
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -152,4 +157,5 @@
             android:button="@null"
             android:checked="false" />
     </LinearLayout>
+
 </LinearLayout>

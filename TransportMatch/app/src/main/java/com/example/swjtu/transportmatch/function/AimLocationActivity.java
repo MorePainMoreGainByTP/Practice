@@ -1,6 +1,7 @@
 package com.example.swjtu.transportmatch.function;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -35,6 +36,7 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.example.swjtu.transportmatch.R;
+import com.example.swjtu.transportmatch.navigate.Navigate2AimActivity;
 
 /**
  * Created by tangpeng on 2017/2/26.
@@ -42,6 +44,8 @@ import com.example.swjtu.transportmatch.R;
 
 public class AimLocationActivity extends AppCompatActivity implements LocationSource,
         AMapLocationListener, AMap.OnMarkerClickListener, GeocodeSearch.OnGeocodeSearchListener, AMap.OnMapClickListener {
+
+    private static final int DEBUG_EMULATOR = 0;    //0实时导航,1模拟导航
 
     private MapView mapView;
     private AMap aMap;
@@ -54,12 +58,15 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
     private boolean mFirstFix = false;
     private boolean aimFirstFix = false;
 
-    private LatLng aimLatLng = new LatLng(33.765207, 103.989339);    //模拟目标位置
+    private LatLng aimLatLng = new LatLng(30.70253, 104.08395);    //模拟目标位置
 
     private Marker mLocMarker;  //我的位置marker
     private Marker aimMaker;    //目标位置对应的marker
     private Marker aimInfoWindow;   //点击目标解析并显示地址的marker
     private Circle circle;
+
+    private TextView distanceTextView;
+    private String distanceStr;
 
     private String[] naviWay = new String[]{"步行", "驾车", "取消"};
 
@@ -68,6 +75,7 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aim_location);
 
+        distanceStr = getSharedPreferences("systemSetting", MODE_PRIVATE).getString("distance", "1km");
         initViews();
         mapView.onCreate(savedInstanceState);
         initData();
@@ -75,9 +83,11 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
 
     private void initViews() {
         mapView = (MapView) findViewById(R.id.map_aim_location);
+        distanceTextView = (TextView) findViewById(R.id.textview_distance);
     }
 
     private void initData() {
+        distanceTextView.setText(distanceStr);  //显示安全围栏半径
         if (aMap == null) {
             aMap = mapView.getMap();
             setUpMap();
@@ -92,6 +102,7 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
         aMap.setMyLocationEnabled(true); //显示定位层并可触发定位
         aMap.setMyLocationType(AMap.MAP_TYPE_NORMAL);  //设置定位方式：定位，跟随，旋转
         aMap.setOnMarkerClickListener(this);    //监听点击marker
+        aMap.setOnMapClickListener(this);
     }
 
     //是否开启卫星地图
@@ -116,7 +127,7 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
     //定位到自己的位置
     public void backMyLocation(View v) {
         if (aMapLocation != null && aMapLocation.getErrorCode() == 0) {//将地图定位到当前位置
-            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()), 18));
+            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(aMapLocation.getLatitude(), aMapLocation.getLongitude()), 11));
         } else {
             Toast.makeText(this, "定位失败！", Toast.LENGTH_SHORT).show();
         }
@@ -129,9 +140,11 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
                     case 0:
-                        break;   //步行导航进行追踪
+                        openNavigate(1);//步行导航
+                        break;
                     case 1:
-                        break;   //驾车导航追踪
+                        openNavigate(2);//驾车导航追踪
+                        break;
                     default:
                         break;
                 }
@@ -139,19 +152,38 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
         }).create().show();
     }
 
+    private void openNavigate(int type) {
+        if (aMapLocation != null) {
+            if (aimLatLng != null) {
+                Intent intent2 = new Intent(AimLocationActivity.this, Navigate2AimActivity.class);
+                intent2.putExtra("startLat", aMapLocation.getLatitude());
+                intent2.putExtra("startLng", aMapLocation.getLongitude());
+                intent2.putExtra("endLat", aimLatLng.latitude);
+                intent2.putExtra("endLng", aimLatLng.longitude);
+                intent2.putExtra("type", type); //设置导航方式
+                intent2.putExtra("emulator", DEBUG_EMULATOR); //是否开启模拟
+                startActivity(intent2);
+            } else {
+                Toast.makeText(AimLocationActivity.this, "没有获得目标位置！", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(AimLocationActivity.this, "定位失败！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     //添加目标定位
     private void addAimMaker() {
         if (aimMaker != null) {
             return;
         }
-        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.aim_location);
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.aim_location1);
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.icon(bitmapDescriptor);
         markerOptions.anchor(0.5f, 0.5f);
         markerOptions.position(aimLatLng);
         aimMaker = aMap.addMarker(markerOptions);
-        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aimLatLng, 18));
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aimLatLng, 13));
     }
 
     /**
@@ -198,9 +230,8 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
         if (circle != null) {
             return;
         }
-        String distance = getSharedPreferences("systemSetting", MODE_PRIVATE).getString("distance", "1km");
         int radius = 1000;
-        switch (distance) {
+        switch (distanceStr) {
             case "10米":
                 radius = 10;
                 break;
