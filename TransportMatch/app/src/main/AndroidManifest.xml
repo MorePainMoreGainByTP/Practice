@@ -27,7 +27,7 @@
         <activity android:name=".function.HistoryTraceActivity" />
         <activity android:name=".function.IsTrackingActivity" />
         <activity android:name=".systemSetting.ChangeIdActivity" />
-        <activity android:name=".navigate.Navigate2AimActivity"/>
+        <activity android:name=".navigate.Navigate2AimActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

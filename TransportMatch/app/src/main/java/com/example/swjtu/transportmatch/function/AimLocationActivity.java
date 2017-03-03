@@ -101,6 +101,7 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
         aMap.getUiSettings().setMyLocationButtonEnabled(false);  //显示定位按钮
         aMap.setMyLocationEnabled(true); //显示定位层并可触发定位
         aMap.setMyLocationType(AMap.MAP_TYPE_NORMAL);  //设置定位方式：定位，跟随，旋转
+        aMap.showIndoorMap(true);   //开启室内地图
         aMap.setOnMarkerClickListener(this);    //监听点击marker
         aMap.setOnMapClickListener(this);
     }
