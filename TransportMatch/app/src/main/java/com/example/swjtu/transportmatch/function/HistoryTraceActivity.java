@@ -93,7 +93,7 @@ public class HistoryTraceActivity extends AppCompatActivity {
         new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Log.i(TAG, "onDateSet: " + year + "-" + (month + 1) + "-" + dayOfMonth);
+                Log.i(TAG, "onDateSet: " + year+ "-" + (month + 1) + "-" + dayOfMonth);
                 Date date = new Date(year, month + 1, dayOfMonth);
                 if (currTime < date.getTime()) {
                     Toast.makeText(HistoryTraceActivity.this, "日期不能大于今天", Toast.LENGTH_SHORT).show();

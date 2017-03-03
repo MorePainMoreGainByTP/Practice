@@ -23,8 +23,8 @@ public class MoreFunctionActivity extends AppCompatActivity {
     private TextView safeDistance;
     private CheckBox switchCommand;
 
-    private String[] safeDistanceItems = new String[]{"10米", "20米", "40米", "100米", "500米", "1km", "5km", "10km"};
-    private String[] commandItems = new String[]{"声音(默认)", "振动", "声音+振动","取消"};
+    private String[] safeDistanceItems = new String[]{"10米", "20米", "40米", "100米", "500米", "1km", "5km", "10km", "50km"};
+    private String[] commandItems = new String[]{"声音(默认)", "振动", "声音+振动", "取消"};
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -55,7 +55,9 @@ public class MoreFunctionActivity extends AppCompatActivity {
                                     break;//启动振动报警
                                 case 2:
                                     break;//启动声音 + 振动报警
-                                default:switchCommand.setChecked(false);break;
+                                default:
+                                    switchCommand.setChecked(false);
+                                    break;
                             }
                         }
                     }).create().show();

@@ -257,6 +257,9 @@ public class AimLocationActivity extends AppCompatActivity implements LocationSo
             case "10km":
                 radius = 10000;
                 break;
+            case "50km":
+                radius = 50000;
+                break;
         }
         circle = aMap.addCircle(new CircleOptions().center(latLng).radius(radius).strokeColor(getResources().getColor(R.color.colorIconBlue)).fillColor(Color.argb(50, 1, 1, 1)).strokeWidth(2));
     }
