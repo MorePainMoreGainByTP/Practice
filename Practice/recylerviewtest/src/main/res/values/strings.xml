@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RecylerViewTest</string>
+    <string name="my_study">我的课程</string>
+    <string name="setting">设置</string>
+    <string name="my_download">我的下载</string>
+    <string name="message_center">消息中心</string>
+    <string name="my_notepad">我的错题</string>
+    <string name="login">登录</string>
+</resources>

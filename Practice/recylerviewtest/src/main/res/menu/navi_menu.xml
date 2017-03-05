@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_study"
+            android:icon="@mipmap/learn"
+            android:title="@string/my_study" />
+        <item
+            android:id="@+id/my_download"
+            android:icon="@mipmap/download"
+            android:title="@string/my_download" />
+        <item
+            android:id="@+id/message_center"
+            android:icon="@mipmap/message"
+            android:title="@string/message_center" />
+        <item
+            android:id="@+id/notepad"
+            android:icon="@mipmap/notepad"
+            android:title="@string/my_notepad" />
+        <item
+            android:id="@+id/setting"
+            android:icon="@mipmap/setting"
+            android:title="@string/setting" />
+    </group>
+</menu>
