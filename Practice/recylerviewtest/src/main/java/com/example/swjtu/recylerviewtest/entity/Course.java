@@ -1,16 +1,27 @@
-package com.example.swjtu.recylerviewtest;
+package com.example.swjtu.recylerviewtest.entity;
 
 /**
  * Created by tangpeng on 2017/3/5.
  */
 
-public class Fruit {
+public class Course {
     private int ImageId;
     private String name;
+    private String teacherName;
 
-    public Fruit(int imageId, String name) {
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public Course(int imageId, String name, String teacherName) {
+
         ImageId = imageId;
         this.name = name;
+        this.teacherName = teacherName;
     }
 
     public int getImageId() {
