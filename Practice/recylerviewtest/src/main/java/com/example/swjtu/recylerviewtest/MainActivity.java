@@ -30,7 +30,7 @@ import com.example.swjtu.recylerviewtest.adapter.CourseRecyclerAdapter;
 import com.example.swjtu.recylerviewtest.entity.Course;
 import com.example.swjtu.recylerviewtest.info.InfoActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
-import com.example.swjtu.recylerviewtest.myCourse.MyCourseActivity;
+import com.example.swjtu.recylerviewtest.myCourse.MyCourseListActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.my_study:
-                        startActivity(new Intent(MainActivity.this, MyCourseActivity.class));
+                        startActivity(new Intent(MainActivity.this, MyCourseListActivity.class));
                         break;
                     case R.id.my_download:
                         break;

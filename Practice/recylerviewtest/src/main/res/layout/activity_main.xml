@@ -47,15 +47,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
                 <android.support.v4.widget.SwipeRefreshLayout
                     android:id="@+id/swipeRefreshLayout"
                     android:layout_width="match_parent"
                     android:layout_height="1000dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
 
                 </android.support.v4.widget.SwipeRefreshLayout>
             </LinearLayout>
@@ -69,26 +70,26 @@
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            app:fab_menuIcon="@mipmap/add2"
             fab:fab_addButtonColorNormal="@color/colorAccent"
             fab:fab_addButtonColorPressed="@color/colorAccent2"
-            app:fab_menuIcon="@mipmap/add2"
             fab:fab_labelStyle="@style/menu_labels_style">
 
             <toan.android.floatingactionmenu.FloatingActionButton
                 android:id="@+id/courseCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fab_icon="@mipmap/category"
                 fab:fab_colorNormal="@color/deepskyblue"
                 fab:fab_colorPressed="@color/deepskyblue2"
-                app:fab_icon="@mipmap/category"
                 fab:fab_title="@string/course_category" />
 
             <toan.android.floatingactionmenu.FloatingActionButton
                 android:id="@+id/courseSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/deepskyblue"
                 app:fab_icon="@mipmap/search_bar"
+                fab:fab_colorNormal="@color/deepskyblue"
                 fab:fab_colorPressed="@color/deepskyblue2"
                 fab:fab_title="@string/course_search" />
 

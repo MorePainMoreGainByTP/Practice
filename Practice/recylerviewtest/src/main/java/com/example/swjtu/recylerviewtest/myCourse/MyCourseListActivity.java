@@ -20,7 +20,7 @@ import java.util.List;
  * Created by tangpeng on 2017/3/7.
  */
 
-public class MyCourseActivity extends AppCompatActivity {
+public class MyCourseListActivity extends AppCompatActivity {
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;

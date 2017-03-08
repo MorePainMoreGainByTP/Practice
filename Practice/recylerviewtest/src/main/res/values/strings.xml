@@ -26,4 +26,6 @@
     <string name="join_course">加入课程</string>
     <string name="course_introduce">课程简介：</string>
     <string name="course_teacher">授课教师：</string>
+    <string name="question_teacher">老师答疑区</string>
+    <string name="discuss_area">课堂交流区</string>
 </resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/questionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/questionContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/questionTitle"
+            android:layout_below="@+id/questionTitle"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="4" />
+
+        <TextView
+            android:id="@+id/questionFromWho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/questionContent"
+            android:layout_below="@+id/questionContent"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLength="15"
+            android:maxLines="1"
+            android:textSize="@dimen/sTextSize" />
+
+        <TextView
+            android:id="@+id/questionDatetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionContent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/questionFromWho"
+            android:gravity="center"
+            android:maxLength="13"
+            android:maxLines="1"
+            android:textSize="@dimen/sTextSize" />
+
+        <ImageView
+            android:id="@+id/editComment"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/questionContent"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/edit_comment" />
+
+        <ImageView
+            android:id="@+id/supportHand"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/questionContent"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/editComment"
+            android:src="@mipmap/hand_grey" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

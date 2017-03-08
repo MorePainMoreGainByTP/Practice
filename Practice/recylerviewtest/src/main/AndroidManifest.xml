@@ -21,8 +21,10 @@
         <activity android:name=".allCourseDetail.CourseDetailActivity" />
         <activity android:name=".loginRegister.LoginActivity" />
         <activity android:name=".loginRegister.RegisterActivity" />
-        <activity android:name=".myCourse.MyCourseActivity" />
+        <activity android:name=".myCourse.MyCourseListActivity" />
         <activity android:name=".info.InfoActivity" />
+        <activity android:name=".myCourse.MyCourseDetailActivity" />
+        <activity android:name=".myCourse.discuss.QuestionDiscussActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

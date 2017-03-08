@@ -1,6 +1,8 @@
 package com.example.swjtu.recylerviewtest.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
 import com.example.swjtu.recylerviewtest.entity.Course;
+import com.example.swjtu.recylerviewtest.myCourse.MyCourseDetailActivity;
 
 import java.util.List;
 
@@ -37,12 +41,21 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
 
     //每次item进入屏幕时 调用
     @Override
-    public void onBindViewHolder(MyCourseRecyclerAdapter.ViewHolder holder, final int position) {
-        Course course = courseList.get(position);
+    public void onBindViewHolder(MyCourseRecyclerAdapter.ViewHolder holder, int position) {
+        final Course course = courseList.get(position);
         //Glide很不错的图片加载库，自动完成图片压缩，可以从本地、网上、和资源id中加载图片，
         // 使用起来非常简单，只需要一句话,load里面可以是URI、资源ID，路径，into里面存放一个imageView实例
-        //Glide.with(context).load(course.getImageId()).into(holder.imageView);
-        holder.imageView.setImageResource(course.getImageId());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MyCourseDetailActivity.class);
+                intent.putExtra("imageId", course.getImageId());
+                intent.putExtra("courseName", course.getName());
+                intent.putExtra("courseTeacher", course.getTeacherName());
+                context.startActivity(intent);
+            }
+        });
+        Glide.with(context).load(course.getImageId()).into(holder.imageView);
         holder.courseName.setText(course.getName());
         holder.courseTeacher.setText(course.getTeacherName());
     }
@@ -53,6 +66,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
         ImageView imageView;
         TextView courseName;
         TextView courseTeacher;
@@ -62,6 +76,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
             imageView = (ImageView) itemView.findViewById(R.id.course_image);
             courseName = (TextView) itemView.findViewById(R.id.course_name);
             courseTeacher = (TextView) itemView.findViewById(R.id.course_teacher);
+            cardView = (CardView) itemView;
         }
     }
 }
