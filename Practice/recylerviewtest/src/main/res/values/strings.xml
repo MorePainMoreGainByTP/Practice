@@ -28,4 +28,15 @@
     <string name="course_teacher">授课教师：</string>
     <string name="question_teacher">老师答疑区</string>
     <string name="discuss_area">课堂交流区</string>
+    <string name="release_topic">发表话题</string>
+    <string name="title">标题：</string>
+    <string name="input_title">输入标题</string>
+    <string name="input_content">输入正文</string>
+    <string name="send_message">消息推送</string>
+    <string name="app_update">应用升级</string>
+    <string name="about_app">关于</string>
+    <string name="feedback">功能反馈</string>
+    <string name="exit_login">退出登录</string>
+    <string name="delete">删除</string>
+
 </resources>

@@ -86,7 +86,7 @@ public class InfoActivity extends AppCompatActivity {
     private void setViews() {
         viewPagerIndicator.setVisibleTanCount(2);
         viewPagerIndicator.setItemTitles(tabTitle);
-        viewPagerIndicator.setRadioTriangleWidth(1 / 13f);
+        viewPagerIndicator.setRadioTriangleWidth(1 / 10f);
         viewPagerIndicator.setViewPager(viewPager, 0);
     }
 

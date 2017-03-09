@@ -70,7 +70,7 @@ public class QuestionDiscussActivity extends AppCompatActivity {
         Random random = new Random();
         for (int i = 0; i < titles.length; i++) {
             DiscussTopic discussTopic = new DiscussTopic(titles[i], content[i], (date.getYear() + 1900) + "-" + date.getMonth() + "-" + (date.getDate()
-                    + random.nextInt(i+1)) + " " + date.getHours() + ":" + (date.getMinutes() + random.nextInt(20)) % 60 + ":" + date.getSeconds(), fromWho[i]);
+                    + random.nextInt(i + 1)) + " " + date.getHours() + ":" + (date.getMinutes() + random.nextInt(20)) % 60 + ":" + date.getSeconds(), fromWho[i]);
             discussTopics.add(discussTopic);
         }
         recyclerView.setAdapter(new CourseDiscussRecyclerAdapter(discussTopics));
@@ -79,7 +79,7 @@ public class QuestionDiscussActivity extends AppCompatActivity {
 
     //发表帖子
     public void editComment(View v) {
-
+        startActivity(new Intent(QuestionDiscussActivity.this, ReleaseTopicActivity.class));
     }
 
     private void refreshCourses() {

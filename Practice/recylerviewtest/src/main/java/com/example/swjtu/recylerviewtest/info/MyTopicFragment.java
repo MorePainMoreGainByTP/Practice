@@ -3,6 +3,7 @@ package com.example.swjtu.recylerviewtest.info;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,41 +12,42 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.swjtu.recylerviewtest.R;
-import com.example.swjtu.recylerviewtest.adapter.InfoRecyclerAdapter;
-import com.example.swjtu.recylerviewtest.entity.MessageInfo;
+import com.example.swjtu.recylerviewtest.adapter.MyTopicRecyclerAdapter;
+import com.example.swjtu.recylerviewtest.entity.DiscussTopic;
 
 import java.util.ArrayList;
 
 /**
- * Created by tangpeng on 2017/3/7.
+ * Created by tangpeng on 2017/3/9.
  */
 
-public class InfoFragment extends android.support.v4.app.Fragment {
+public class MyTopicFragment extends Fragment {
 
-    private ArrayList<MessageInfo> messageList;
+    private ArrayList<DiscussTopic> topicList;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
-    private InfoRecyclerAdapter infoRecyclerAdapter;
+    private MyTopicRecyclerAdapter myTopicRecyclerAdapter;
 
-    public static String KEY_MESSAGE_INFO = "message_info";
+    private static String KEY_MY_TOPIC = "my_topic";
 
-    public static InfoFragment newInstance(ArrayList<MessageInfo> infos) {
+    public static MyTopicFragment newInstance(ArrayList<DiscussTopic> infos) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_MESSAGE_INFO, infos);
-        InfoFragment infoFragment = new InfoFragment();
-        infoFragment.setArguments(bundle);
-        return infoFragment;
+        bundle.putSerializable(KEY_MY_TOPIC, infos);
+        MyTopicFragment myTopicFragment = new MyTopicFragment();
+        myTopicFragment.setArguments(bundle);
+        return myTopicFragment;
     }
+
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_info, null);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_my_topic, null);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         Bundle bundle = getArguments();
-        messageList = (ArrayList<MessageInfo>) bundle.getSerializable(KEY_MESSAGE_INFO);
+        topicList = (ArrayList<DiscussTopic>) bundle.getSerializable(KEY_MY_TOPIC);
         initData();
         setViews();
 
@@ -53,8 +55,8 @@ public class InfoFragment extends android.support.v4.app.Fragment {
     }
 
     private void initData() {
-        infoRecyclerAdapter = new InfoRecyclerAdapter(messageList);
-        recyclerView.setAdapter(infoRecyclerAdapter);
+        myTopicRecyclerAdapter = new MyTopicRecyclerAdapter(topicList);
+        recyclerView.setAdapter(myTopicRecyclerAdapter);
     }
 
     private void setViews() {

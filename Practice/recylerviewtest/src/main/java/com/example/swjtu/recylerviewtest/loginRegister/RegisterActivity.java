@@ -7,7 +7,6 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +24,6 @@ import cn.smssdk.SMSSDK;
 public class RegisterActivity extends AppCompatActivity {
     private TextView getCheckCode;  //获取验证码
     private EditText phone, password, passwordAgain, checkCode;
-    private Button nextStep;    //"下一步" 或 "确认"
-    private TextView title; //activity标题:"忘记密码" "注册"
     private int fromActivity;
 
     private static final String APP_KEY = "1b6e5e14dc960";
@@ -61,13 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         initViews();
         fromActivity = getIntent().getIntExtra("fromActivity", 0);
-        if (fromActivity == 0) {
-            title.setText("注册");
-            nextStep.setText("下一步");
-        } else {
-            title.setText("忘记密码");
-            nextStep.setText("确认");
-        }
 
         //初始化短信验证码SDK
         SMSSDK.initSDK(this, APP_KEY, APP_SECRET);
@@ -108,8 +98,6 @@ public class RegisterActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.set_password);
         passwordAgain = (EditText) findViewById(R.id.confirm_password);
         checkCode = (EditText) findViewById(R.id.checkCode);
-        title = (TextView) findViewById(R.id.title);
-        nextStep = (Button) findViewById(R.id.nextStep);
 
         getCheckCode.setOnClickListener(new View.OnClickListener() {
             @Override

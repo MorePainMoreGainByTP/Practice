@@ -1,4 +1,4 @@
-package com.example.swjtu.recylerviewtest.myCourse.discuss;
+package com.example.swjtu.recylerviewtest.searchCourse;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,19 +8,14 @@ import android.view.View;
 import com.example.swjtu.recylerviewtest.R;
 
 /**
- * Created by tangpeng on 2017/3/8.
+ * Created by tangpeng on 2017/3/9.
  */
 
-public class ReleaseTopicActivity extends AppCompatActivity {
+public class CourseCategoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_release_topic);
-    }
-
-
-    public void commitTopic(View v) {
-
+        setContentView(R.layout.activity_course_category);
     }
 
     public void back(View v) {

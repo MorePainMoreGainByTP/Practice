@@ -24,7 +24,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/question_teacher"
             android:textStyle="bold" />
@@ -46,10 +45,10 @@
             android:src="@mipmap/discuss1" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="@string/discuss_area"
             android:textStyle="bold" />

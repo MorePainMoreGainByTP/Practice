@@ -24,7 +24,10 @@
         <activity android:name=".myCourse.MyCourseListActivity" />
         <activity android:name=".info.InfoActivity" />
         <activity android:name=".myCourse.MyCourseDetailActivity" />
-        <activity android:name=".myCourse.discuss.QuestionDiscussActivity"/>
+        <activity android:name=".myCourse.discuss.QuestionDiscussActivity" />
+        <activity android:name=".myCourse.discuss.ReleaseTopicActivity" />
+        <activity android:name=".setting.SettingActivity" />
+        <activity android:name=".info.MyMessageActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

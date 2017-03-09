@@ -29,8 +29,10 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.swjtu.recylerviewtest.adapter.CourseRecyclerAdapter;
 import com.example.swjtu.recylerviewtest.entity.Course;
 import com.example.swjtu.recylerviewtest.info.InfoActivity;
+import com.example.swjtu.recylerviewtest.info.MyMessageActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
 import com.example.swjtu.recylerviewtest.myCourse.MyCourseListActivity;
+import com.example.swjtu.recylerviewtest.setting.SettingActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -129,8 +131,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     case R.id.notepad:
                         break;
                     case R.id.setting:
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
                         break;
                     case R.id.my_message:
+                        startActivity(new Intent(MainActivity.this, MyMessageActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawers();
