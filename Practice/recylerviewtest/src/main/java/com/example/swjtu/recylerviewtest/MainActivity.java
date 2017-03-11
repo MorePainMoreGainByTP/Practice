@@ -32,6 +32,7 @@ import com.example.swjtu.recylerviewtest.info.InfoActivity;
 import com.example.swjtu.recylerviewtest.info.MyMessageActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
 import com.example.swjtu.recylerviewtest.myCourse.MyCourseListActivity;
+import com.example.swjtu.recylerviewtest.myDownload.MyDownloadActivity;
 import com.example.swjtu.recylerviewtest.setting.SettingActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -124,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         startActivity(new Intent(MainActivity.this, MyCourseListActivity.class));
                         break;
                     case R.id.my_download:
+                        startActivity(new Intent(MainActivity.this, MyDownloadActivity.class));
                         break;
                     case R.id.message_center:
                         startActivity(new Intent(MainActivity.this, InfoActivity.class));

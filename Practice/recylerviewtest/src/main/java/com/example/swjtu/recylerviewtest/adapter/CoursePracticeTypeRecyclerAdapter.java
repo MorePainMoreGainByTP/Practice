@@ -1,6 +1,7 @@
 package com.example.swjtu.recylerviewtest.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
 import com.example.swjtu.recylerviewtest.entity.CoursePractice;
+import com.example.swjtu.recylerviewtest.myCourse.coursePractice.PracticeProfileActivity;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class CoursePracticeTypeRecyclerAdapter extends RecyclerView.Adapter<Cour
     //每次item进入屏幕时 调用
     @Override
     public void onBindViewHolder(CoursePracticeTypeRecyclerAdapter.ViewHolder holder, int position) {
-        CoursePractice courseSection = coursePractice.get(position);
+        final CoursePractice courseSection = coursePractice.get(position);
         //Glide很不错的图片加载库，自动完成图片压缩，可以从本地、网上、和资源id中加载图片，
         // 使用起来非常简单，只需要一句话,load里面可以是URI、资源ID，路径，into里面存放一个imageView实例
         Glide.with(context).load(R.mipmap.practice).into(holder.practiceImageView);
@@ -48,6 +50,15 @@ public class CoursePracticeTypeRecyclerAdapter extends RecyclerView.Adapter<Cour
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "进入练习", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, PracticeProfileActivity.class);
+                intent.putExtra("practiceTitle", courseSection.getType());
+                intent.putExtra("practiceUnitName", courseSection.getName());
+                intent.putExtra("practiceUnitProfile", courseSection.getPracticeProfile());
+                intent.putExtra("practiceNum", courseSection.getQuestionNum());
+                intent.putExtra("practiceTimeLimit", courseSection.getTimeLimit());
+                intent.putExtra("practiceDeadLine", courseSection.getDeadLine());
+                intent.putExtra("groupId", courseSection.getGroupId());
+                context.startActivity(intent);
             }
         });
         holder.practiceType.setText(courseSection.getType());

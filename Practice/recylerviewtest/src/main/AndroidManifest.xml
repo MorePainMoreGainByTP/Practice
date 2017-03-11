@@ -28,6 +28,9 @@
         <activity android:name=".myCourse.discuss.ReleaseTopicActivity" />
         <activity android:name=".setting.SettingActivity" />
         <activity android:name=".info.MyMessageActivity"/>
+        <activity android:name=".myDownload.MyDownloadActivity"/>
+        <activity android:name=".myCourse.coursePractice.PracticeProfileActivity"/>
+        <activity android:name=".myCourse.coursePractice.DoQuestionActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

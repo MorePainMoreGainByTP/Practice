@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/transparent"
     android:clickable="true"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="2dp">
 
@@ -25,9 +26,11 @@
         android:ellipsize="end"
         android:maxLines="1" />
 
-    <ImageView
-        android:id="@+id/imageview_download_res"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_gravity="center_vertical" />
+    <TextView
+        android:id="@+id/deleteRes"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/delete" />
 </LinearLayout>

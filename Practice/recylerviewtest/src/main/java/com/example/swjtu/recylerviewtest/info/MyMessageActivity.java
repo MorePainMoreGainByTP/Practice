@@ -14,9 +14,10 @@ import com.example.swjtu.recylerviewtest.entity.DiscussTopic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
+import static com.example.swjtu.recylerviewtest.Utils.getRandomDatetime;
 
 /**
  * Created by tangpeng on 2017/3/8.
@@ -29,10 +30,12 @@ public class MyMessageActivity extends AppCompatActivity {
     private List<String> tabTitle = Arrays.asList(new String[]{"我的话题", "回复我的"});
     private List<Fragment> fragments = new ArrayList<>();
 
-    private ArrayList<DiscussTopic> myTopics;    //话题
+    private ArrayList<DiscussTopic> myTopics;    //我的话题
+    private ArrayList<DiscussTopic> replyTopics;    //回复我的
     private String[] topicTitle = {"C语言程序设计", "操作系统", "计算机网络", "H5+JS+CSS3", "PHP教学", "财务报表编制", "博弈的思维看世界"};
     private String[] topicContent = {"C语言程序设计C语言程序设计", "操作系统操作系统", "计算机网络计算机网络", "H5+JS+CSS3H5+JS+CSS3",
             "PHP教学PHP教学PHP教学", "财务报表编制财务报表编制财务报表编制", "博弈的思维看世界博弈的思维看世界博弈的思维看世界"};
+    private String[] fromWho = {"张三超", "胡管", "刘芳", "李煜进", "蔡京", "张中丞", "陈意涵", "熊玉芳", "刘毅"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,16 +54,19 @@ public class MyMessageActivity extends AppCompatActivity {
 
     private void initData() {
         //首先填充数据
-        Date date = new Date();
         myTopics = new ArrayList<>();
+        replyTopics = new ArrayList<>();
         Random random = new Random();
         for (int i = 1; i < 15; i++) {
-            DiscussTopic discussTopic = new DiscussTopic(topicTitle[i % topicTitle.length], topicContent[i % topicContent.length], (date.getYear() + 1900) + "-" + date.getMonth() + "-" + (date.getDate()
-                    + random.nextInt(i)) + " " + date.getHours() + ":" + (date.getMinutes() + random.nextInt(20)) % 60 + ":" + date.getSeconds(), null);
+            DiscussTopic discussTopic = new DiscussTopic(topicTitle[i % topicTitle.length], topicContent[i % topicContent.length], getRandomDatetime(), null);
             myTopics.add(discussTopic);
+
+            DiscussTopic replyTopic = new DiscussTopic(topicTitle[i % topicTitle.length], topicContent[i % topicContent.length], getRandomDatetime(), fromWho[random.nextInt(15) % fromWho.length] + " 回复:");
+            replyTopics.add(replyTopic);
         }
+
         fragments.add(MyTopicFragment.newInstance(myTopics));
-        fragments.add(MyTopicFragment.newInstance(myTopics));
+        fragments.add(ReplyMeFragment.newInstance(replyTopics));
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -81,6 +87,7 @@ public class MyMessageActivity extends AppCompatActivity {
         viewPagerIndicator.setRadioTriangleWidth(1 / 10f);
         viewPagerIndicator.setViewPager(viewPager, 0);
     }
+
 
     public void back(View v) {
         finish();

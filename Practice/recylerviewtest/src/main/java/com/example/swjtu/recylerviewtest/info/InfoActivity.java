@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import static com.example.swjtu.recylerviewtest.Utils.getRandomDatetime;
+
 /**
  * Created by tangpeng on 2017/3/7.
  */
@@ -58,13 +60,9 @@ public class InfoActivity extends AppCompatActivity {
         systemMessage = new ArrayList<>();
         Random random = new Random();
         for (int i = 1; i < 15; i++) {
-            MessageInfo messageInfo = new MessageInfo((date.getYear() + 1900) + "-" + date.getMonth() + "-" + (date.getDate()
-                    + random.nextInt(i)) + " " + date.getHours() + ":" + (date.getMinutes() + random.nextInt(20)) % 60 + ":" + date.getSeconds()
-                    , courseName[i % courseName.length], content[i % content.length]);
+            MessageInfo messageInfo = new MessageInfo(getRandomDatetime(), courseName[i % courseName.length], content[i % content.length]);
             courseMessage.add(messageInfo);
-            MessageInfo messageInfo2 = new MessageInfo((date.getYear() + 1900) + "-" + date.getMonth() + "-" + (date.getDate()
-                    + random.nextInt(i)) + " " + date.getHours() + ":" + (date.getMinutes() + random.nextInt(60)) % 60 + ":" + date.getSeconds()
-                    , courseName[(i % courseName.length + random.nextInt(3)) % courseName.length], content[(i % content.length + random.nextInt(3)) % content.length]);
+            MessageInfo messageInfo2 = new MessageInfo(getRandomDatetime(), courseName[(i % courseName.length + random.nextInt(3)) % courseName.length], content[(i % content.length + random.nextInt(3)) % content.length]);
             systemMessage.add(messageInfo2);
         }
         fragments.add(InfoFragment.newInstance(courseMessage));

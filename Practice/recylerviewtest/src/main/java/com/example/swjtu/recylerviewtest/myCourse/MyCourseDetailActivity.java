@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.example.swjtu.recylerviewtest.R;
 import com.example.swjtu.recylerviewtest.customView.ViewPagerIndicator;
@@ -29,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import static com.example.swjtu.recylerviewtest.Utils.getRandomDatetime;
 
 /**
  * Created by tangpeng on 2017/3/8.
@@ -72,7 +73,7 @@ public class MyCourseDetailActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        ((ImageView) findViewById(R.id.course_image_view_detail)).setBackgroundResource(intent.getIntExtra("imageId", 0));
+        (findViewById(R.id.course_image_view_detail)).setBackgroundResource(intent.getIntExtra("imageId", 0));
     }
 
     private void initViews() {
@@ -138,7 +139,7 @@ public class MyCourseDetailActivity extends AppCompatActivity {
         for (int i = 0; i < 10; i++) {
             ArrayList<CoursePractice> coursePractices = new ArrayList<>();
             for (int j = 0; j < (random.nextInt(4) + 1); j++) {
-                CoursePractice coursePractice = new CoursePractice(practiceType[random.nextInt(5) % practiceType.length], "测试item:" + random.nextInt(10));
+                CoursePractice coursePractice = new CoursePractice(practiceType[random.nextInt(5) % practiceType.length], "测试item:" + random.nextInt(10), "", getRandomDatetime(), 1 + (int) (Math.random() * 120), 1 + (int) (Math.random() * 15),"");
                 coursePractices.add(coursePractice);
             }
             CoursePracticeSection coursePracticeSection = new CoursePracticeSection("第" + random.nextInt(10) + "章", coursePractices);
