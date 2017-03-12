@@ -2,6 +2,7 @@ package com.example.swjtu.recylerviewtest.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,14 +50,15 @@ public class CourseRecyclerAdapter extends RecyclerView.Adapter<CourseRecyclerAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, CourseDetailActivity.class);
-                intent.putExtra("imageId", course.getImageId());
-                intent.putExtra("courseName", course.getName());
-                intent.putExtra("courseTeacher", course.getTeacherName());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("course", course);
+                bundle.putSerializable("teacher", course.getTeacher());
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });
         holder.courseName.setText(course.getName());
-        holder.courseTeacher.setText(course.getTeacherName());
+        holder.courseTeacher.setText(course.getTeacher().getName());
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.swjtu.recylerviewtest.adapter.CourseRecyclerAdapter;
 import com.example.swjtu.recylerviewtest.entity.Course;
+import com.example.swjtu.recylerviewtest.entity.Teacher;
 import com.example.swjtu.recylerviewtest.info.InfoActivity;
 import com.example.swjtu.recylerviewtest.info.MyMessageActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
@@ -44,6 +46,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import toan.android.floatingactionmenu.FloatingActionButton;
 import toan.android.floatingactionmenu.FloatingActionsMenu;
@@ -76,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             R.drawable.img8, R.drawable.img9, R.drawable.img10, R.drawable.img11, R.drawable.img12, R.drawable.img13, R.drawable.img14, R.drawable.img15,
             R.drawable.img16, R.drawable.img17, R.drawable.img18, R.drawable.img19, R.drawable.img20, R.drawable.img21, R.drawable.img22, R.drawable.img23,
             R.drawable.img24, R.drawable.img25, R.drawable.img26};
-    private String[] courseName = {"C语言程序设计", "操作系统", "计算机网络", "H5+JS+CSS3", "PHP教学", "财务报表编制", "博弈的思维看世界", "创业：道与术", "管理沟通"
-            , "大学英语综合课程", "英语教学与互联网", "IT行业职场英语", "中国茶道", "中国饮食文化", "海洋与人类文明的产生", "航空燃气涡轮发动机", "材料科学基础"
-            , "浅论电子学", "结构力学", "物理化学", "概率论与数理统计", "大学物理", "宇宙探索与发现", "药物分析", "药物化学", "太极拳医学"};
+    private String[] courseName = {"大学英语综合课程", "英语教学与互联网", "老子的人生智慧", "H5+JS+CSS3", "PHP应用与开发", "概率论与数理统计",
+            "大学物理", "教学研究", "机械原理", "物理化学", "C语言程序设计", "中国茶道", "计算机网络", "工程信号与系统", "结构力学", "药物分析", "药物化学",
+            "针灸学", "中国饮食文化", "管理沟通", "财务报表编制", "博弈的思维看世界", "冷战史专题", "创业：道与术", "操作系统", "太极拳医学"};
     private String[] courseTeacher = {"徐帆", "晨阳", "赵丹", "李庆", "冯凯", "李莹迷", "张三宸", "刘一飞", "催帐秋", "王凤奎", "李丹崖", "钱钟伟", "邵佳一", "李志", "王强才"
             , "万秋波", "张嘉译", "王光兴", "李学鹏", "郜昊", "马雪东", "尚补偲", "朱元甫", "秦才", "赵文轩", "刘圣凯"};
+    private String[] positions = {"教授", "副教授"};
+    Random random = new Random();
+    private ArrayList<String> courseProfile = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,9 +188,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void initData() {
+        collapsingToolbarLayout.setTitle("精品课程");
         courseList = new ArrayList<>();
+        initCourseProfile();
         for (int i = 0; i < imageId.length; i++) {
-            Course course = new Course(imageId[i], courseName[i], courseTeacher[i]);
+            Course course = new Course(imageId[i], courseName[i], new Teacher(courseTeacher[i], positions[random.nextInt(2)]), "", courseProfile.get(i));
             courseList.add(course);
         }
         //设置下拉旋转箭头的颜色
@@ -223,6 +231,23 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 return new NetworkImageHolderView();
             }
         }, networkImages).setPageIndicator(new int[]{R.mipmap.ic_page_indicator, R.mipmap.ic_page_indicator_focused}).setOnItemClickListener(this);
+    }
+
+    private void initCourseProfile() {
+        for (int i = 0; i < imageId.length / 5; i++) {
+            courseProfile.add("《大学英语综合课程》是一门以培养学习者的语言基本技能、跨文化交际能力与批判性思维能力为总目标的综合性英语课程。旨在通过本课程学习，" +
+                    "帮助学习者比较熟练地掌握听、说、读、写等语言基本技能，提升文化意识和跨文化交际能力，并增强独立思考、发现与解决问题等自主学习能力和思辨能力。");
+            courseProfile.add("迅速吸收最新行业资讯，和来自全球的客户保持有效沟通和交流，是IT高端人才的职场护身绝技! IT行业职场英语课程聚焦你的沟通能力，" +
+                    "阅读和写作能力，思维与决策力，助力你在人才济济的IT行业笑傲江湖！");
+            courseProfile.add("大道至简，大象无形。南怀瑾先生曾有一个形象的比喻：儒家像粮店，佛家像百货店，而道家像药店。当我们面临着这么多的困扰、困惑的时候，" +
+                    "老子和庄子的道家智慧，在很多方面能够为我们答疑解惑。本课程将引领各位探讨中国文化的根源之一，道家智慧。让我们一起来领略老子和庄子的人格魅力与精神境界！");
+            courseProfile.add("本课程主要讲述计算机控制系统理论与工程设计的基础理论与方法，其中主要包括信号变换、系统建模与性能分析、数字控制器的模拟化设计方法、数字控制器的直接设计方法，基于状态空间模型的数字控制器极点配置设计方法，计算机控制系统仿真，以及计算机控制系统的工程化实现等技术。同时，课程设置了针对不同被控对象特性的多种实验，包括基础型实验和研究型实验，以加深对计算机控制系统基础理论和方法的理解。\n" +
+                    "通过本课程的学习，将使学生掌握计算机控制系统设计的基本方法，培养学生应用所学过的控制理论基本知识分析和解决实际问题的能力，为进一步的学术研究和工程应用奠定基础。");
+            courseProfile.add("本课程是理工科各专业的专业基础核心课程，是面向高校理工科专业的学生开设的一门计算机基础课程。通过本课程的学习，学生可以对计算机网络有一个基本的认识，了解当今计算机网络的现状和发展趋势，掌握计算机网络涉及的基本概念，掌握计算机网络应用基础知识，理解和掌握Internet的工作原理，熟练应用Internet提供的各种服务，从而掌握计算机网络的技术原理和综合应用。本课程培养学生的思维能力和实践动手能力，" +
+                    "为学生学习后续课程以及解决生活、工作中遇到的相关问题提供技术和应用能力的支撑。");
+        }
+        courseProfile.add("本课程是理工科各专业的专业基础核心课程，是面向高校理工科专业的学生开设的一门计算机基础课程。通过本课程的学习，学生可以对计算机网络有一个基本的认识，了解当今计算机网络的现状和发展趋势，掌握计算机网络涉及的基本概念，掌握计算机网络应用基础知识，理解和掌握Internet的工作原理，熟练应用Internet提供的各种服务，从而掌握计算机网络的技术原理和综合应用。本课程培养学生的思维能力和实践动手能力，" +
+                "为学生学习后续课程以及解决生活、工作中遇到的相关问题提供技术和应用能力的支撑。");
     }
 
     /*
@@ -294,7 +319,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(MainActivity.this, "完成刷新", Toast.LENGTH_SHORT).show();
                         //停止刷新
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -390,5 +414,19 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             imageView.setImageResource(R.drawable.ic_default_adimage);
             ImageLoader.getInstance().displayImage(data, imageView);
         }
+    }
+
+    private long lastTime;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == event.KEYCODE_BACK) {
+            if (Math.abs(System.currentTimeMillis() - lastTime) < 2000) {
+                finish();
+            } else {
+                lastTime = System.currentTimeMillis();
+            }
+        }
+        return true;
     }
 }

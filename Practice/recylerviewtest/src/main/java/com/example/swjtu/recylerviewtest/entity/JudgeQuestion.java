@@ -19,10 +19,6 @@ public class JudgeQuestion extends BaseQuestion {
         this.answer = answer;
     }
 
-    public JudgeQuestion(int type, String id, String question, int score ) {
-        super(type, id, question, score );
-    }
-
     public int getChoiceNum() {
         return choiceNum;
     }

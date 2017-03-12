@@ -110,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/textview1"
-                            android:layout_margin="10dp"
+                            android:layout_margin="5dp"
                             android:layout_toRightOf="@+id/teacherHeaderImage" />
 
                         <TextView
@@ -118,7 +118,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/teacherName"
-                            android:layout_margin="10dp"
+                            android:layout_margin="5dp"
                             android:layout_toRightOf="@+id/teacherHeaderImage" />
                     </RelativeLayout>
                 </LinearLayout>

@@ -18,6 +18,7 @@ import android.view.View;
 
 import com.example.swjtu.recylerviewtest.R;
 import com.example.swjtu.recylerviewtest.customView.ViewPagerIndicator;
+import com.example.swjtu.recylerviewtest.entity.Course;
 import com.example.swjtu.recylerviewtest.entity.CoursePractice;
 import com.example.swjtu.recylerviewtest.entity.CoursePracticeSection;
 import com.example.swjtu.recylerviewtest.entity.CourseResource;
@@ -65,15 +66,16 @@ public class MyCourseDetailActivity extends AppCompatActivity {
     }
 
     private void setActionBar() {
+        Course course = (Course) intent.getExtras().getSerializable("course");
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolBar);
-        collapsingToolbarLayout.setTitle(intent.getStringExtra("courseName"));
+        collapsingToolbarLayout.setTitle(course.getName());
         Toolbar toolbar = (Toolbar) findViewById(R.id.tooBar_detail);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        (findViewById(R.id.course_image_view_detail)).setBackgroundResource(intent.getIntExtra("imageId", 0));
+        (findViewById(R.id.course_image_view_detail)).setBackgroundResource(course.getImageId());
     }
 
     private void initViews() {
@@ -113,7 +115,7 @@ public class MyCourseDetailActivity extends AppCompatActivity {
 
     private void initData() {
         fragmentList = new ArrayList<>();
-        fragmentList.add(CourseIntroduceFragment.newInstance(courseProfile, new Teacher(intent.getStringExtra("courseTeacher"), "教授")));
+        fragmentList.add(CourseIntroduceFragment.newInstance(courseProfile, (Teacher) intent.getExtras().getSerializable("teacher")));
         initCourseSectionList();
         fragmentList.add(CourseResourceFragment.newInstance(courseSections));
         fragmentList.add(CoursePracticeFragment.newInstance(coursePracticeSections));
@@ -139,7 +141,7 @@ public class MyCourseDetailActivity extends AppCompatActivity {
         for (int i = 0; i < 10; i++) {
             ArrayList<CoursePractice> coursePractices = new ArrayList<>();
             for (int j = 0; j < (random.nextInt(4) + 1); j++) {
-                CoursePractice coursePractice = new CoursePractice(practiceType[random.nextInt(5) % practiceType.length], "测试item:" + random.nextInt(10), "", getRandomDatetime(), 1 + (int) (Math.random() * 120), 1 + (int) (Math.random() * 15),"");
+                CoursePractice coursePractice = new CoursePractice(practiceType[random.nextInt(5) % practiceType.length], "测试item:" + random.nextInt(10), "", getRandomDatetime(), 1 + (int) (Math.random() * 120), 1 + (int) (Math.random() * 15), "");
                 coursePractices.add(coursePractice);
             }
             CoursePracticeSection coursePracticeSection = new CoursePracticeSection("第" + random.nextInt(10) + "章", coursePractices);

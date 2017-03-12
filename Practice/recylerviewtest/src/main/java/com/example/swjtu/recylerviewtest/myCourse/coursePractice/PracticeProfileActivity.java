@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.example.swjtu.recylerviewtest.R;
  */
 
 public class PracticeProfileActivity extends AppCompatActivity {
+    private static final String TAG = "PracticeProfileActivity";
 
     private Intent intent;
     private String groupId; //习题组的ID
@@ -46,6 +48,7 @@ public class PracticeProfileActivity extends AppCompatActivity {
     public void doPractice(View v) {
         startActivity(new Intent(PracticeProfileActivity.this, DoQuestionActivity.class).putExtra("groupId", groupId).putExtra("practiceNum", quesNum)
                 .putExtra("practiceTimeLimit", timeLim));
+        Log.i(TAG, "doPractice: groupId" + groupId + ", practiceNum" + quesNum + ",practiceTimeLimit " + timeLim);
     }
 
     public void back(View v) {

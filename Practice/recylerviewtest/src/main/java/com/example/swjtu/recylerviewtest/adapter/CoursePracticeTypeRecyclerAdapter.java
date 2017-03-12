@@ -45,7 +45,7 @@ public class CoursePracticeTypeRecyclerAdapter extends RecyclerView.Adapter<Cour
         final CoursePractice courseSection = coursePractice.get(position);
         //Glide很不错的图片加载库，自动完成图片压缩，可以从本地、网上、和资源id中加载图片，
         // 使用起来非常简单，只需要一句话,load里面可以是URI、资源ID，路径，into里面存放一个imageView实例
-        Glide.with(context).load(R.mipmap.practice).into(holder.practiceImageView);
+        Glide.with(context).load(R.mipmap.pen_green).into(holder.practiceImageView);
         holder.practiceImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

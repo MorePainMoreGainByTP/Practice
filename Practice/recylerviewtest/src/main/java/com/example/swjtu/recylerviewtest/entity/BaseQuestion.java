@@ -1,11 +1,13 @@
 package com.example.swjtu.recylerviewtest.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by tangpeng on 2017/3/11.
  */
 
-public class BaseQuestion {
-    private int type;   //0是客观题，1是主观题
+public class BaseQuestion implements Serializable{
+    private int type;   //0是单选，1是多选，2是判断，3是填空
     private String id;     //题目编号
     private String question;    //问题
     private int score;  //分数

@@ -16,24 +16,23 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/sTextSize"/>
+            android:textSize="@dimen/sTextSize" />
 
         <TextView
             android:id="@+id/course_teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:layout_marginLeft="4dp"
-            android:textSize="@dimen/tTextSize"
-            />
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/tTextSize" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -1,12 +1,13 @@
 package com.example.swjtu.recylerviewtest.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by tangpeng on 2017/3/11.
  */
 
-public class ChoiceQuestion extends BaseQuestion {
+public class ChoiceQuestion extends BaseQuestion implements Serializable{
 
     private int choiceNum;  //选项个数
     private int answer; //答案的索引
@@ -17,10 +18,6 @@ public class ChoiceQuestion extends BaseQuestion {
         this.choiceNum = choiceNum;
         this.answer = answer;
         this.choices = choices;
-    }
-
-    public ChoiceQuestion(int type, String id, String question, int score ) {
-        super(type, id, question, score );
     }
 
     public int getChoiceNum() {

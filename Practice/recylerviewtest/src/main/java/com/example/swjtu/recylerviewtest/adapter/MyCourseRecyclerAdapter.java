@@ -2,6 +2,7 @@ package com.example.swjtu.recylerviewtest.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,15 +50,16 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MyCourseDetailActivity.class);
-                intent.putExtra("imageId", course.getImageId());
-                intent.putExtra("courseName", course.getName());
-                intent.putExtra("courseTeacher", course.getTeacherName());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("course", course);
+                bundle.putSerializable("teacher", course.getTeacher());
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });
         Glide.with(context).load(course.getImageId()).into(holder.imageView);
         holder.courseName.setText(course.getName());
-        holder.courseTeacher.setText(course.getTeacherName());
+        holder.courseTeacher.setText(course.getTeacher().getName());
     }
 
     @Override
