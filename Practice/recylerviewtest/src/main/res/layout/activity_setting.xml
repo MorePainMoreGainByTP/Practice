@@ -38,7 +38,7 @@
         android:background="@drawable/rect_bg_white_gray_press"
         android:clickable="true"
         android:gravity="center_vertical"
-        android:onClick="changeId"
+        android:onClick="updateApp"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -65,7 +65,7 @@
         android:background="@drawable/rect_bg_white_gray_press"
         android:clickable="true"
         android:gravity="center_vertical"
-        android:onClick="safeTipFrequency"
+        android:onClick="aboutApp"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -98,7 +98,7 @@
         android:background="@drawable/rect_bg_white_gray_press"
         android:clickable="true"
         android:gravity="center_vertical"
-        android:onClick="safeTipFrequency"
+        android:onClick="functionFeedback"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -171,7 +171,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/corner_rec_bg_blue_press"
-        android:onClick="goNextStep"
+        android:onClick="exitLogin"
         android:text="@string/exit_login"
         android:textColor="@color/white" />
 </LinearLayout>

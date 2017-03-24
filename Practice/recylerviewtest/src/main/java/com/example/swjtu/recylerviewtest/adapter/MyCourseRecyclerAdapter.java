@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
 import com.example.swjtu.recylerviewtest.entity.Course;
 import com.example.swjtu.recylerviewtest.myCourse.MyCourseDetailActivity;
+import com.example.swjtu.recylerviewtest.myTestGrade.CourseGradeActivity;
 
 import java.util.List;
 
@@ -26,6 +27,12 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
 
     private List<Course> courseList;
     private Context context;
+
+    private boolean isViewGrade = false;    //是否查看成绩
+
+    public void setViewGrade(boolean viewGrade) {
+        isViewGrade = viewGrade;
+    }
 
     public MyCourseRecyclerAdapter(List<Course> courseList) {
         this.courseList = courseList;
@@ -46,17 +53,27 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
         final Course course = courseList.get(position);
         //Glide很不错的图片加载库，自动完成图片压缩，可以从本地、网上、和资源id中加载图片，
         // 使用起来非常简单，只需要一句话,load里面可以是URI、资源ID，路径，into里面存放一个imageView实例
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MyCourseDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("course", course);
-                bundle.putSerializable("teacher", course.getTeacher());
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
-        });
+        if (!isViewGrade) {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MyCourseDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("course", course);
+                    bundle.putSerializable("teacher", course.getTeacher());
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, CourseGradeActivity.class));
+                }
+            });
+        }
+        ;
         Glide.with(context).load(course.getImageId()).into(holder.imageView);
         holder.courseName.setText(course.getName());
         holder.courseTeacher.setText(course.getTeacher().getName());

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
@@ -49,7 +48,6 @@ public class CoursePracticeTypeRecyclerAdapter extends RecyclerView.Adapter<Cour
         holder.practiceImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "进入练习", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, PracticeProfileActivity.class);
                 intent.putExtra("practiceTitle", courseSection.getType());
                 intent.putExtra("practiceUnitName", courseSection.getName());

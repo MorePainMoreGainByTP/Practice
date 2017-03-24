@@ -35,6 +35,9 @@ import com.example.swjtu.recylerviewtest.info.MyMessageActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
 import com.example.swjtu.recylerviewtest.myCourse.MyCourseListActivity;
 import com.example.swjtu.recylerviewtest.myDownload.MyDownloadActivity;
+import com.example.swjtu.recylerviewtest.myTestGrade.CourseListActivity;
+import com.example.swjtu.recylerviewtest.searchCourse.CourseCategoryActivity;
+import com.example.swjtu.recylerviewtest.searchCourse.SearchCourseActivity;
 import com.example.swjtu.recylerviewtest.setting.SettingActivity;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -143,6 +146,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         break;
                     case R.id.my_message:
                         startActivity(new Intent(MainActivity.this, MyMessageActivity.class));
+                        break;
+                    case R.id.myGrade:
+                        startActivity(new Intent(MainActivity.this, CourseListActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawers();
@@ -373,8 +379,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (v.getId()) {
             case R.id.courseCategory:
                 actionsMenu.collapse();
+                startActivity(new Intent(MainActivity.this, CourseCategoryActivity.class));
                 break;
             case R.id.courseSearch:
+                startActivity(new Intent(MainActivity.this, SearchCourseActivity.class));
                 actionsMenu.collapse();
                 break;
         }

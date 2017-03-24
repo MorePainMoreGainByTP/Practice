@@ -5,6 +5,7 @@
     <string name="my_download">我的下载</string>
     <string name="message_center">通知中心</string>
     <string name="my_message">我的消息</string>
+    <string name="my_grade">我的成绩</string>
     <string name="my_notepad">我的错题</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
@@ -50,5 +51,7 @@
     <string name="item">题目</string>
     <string name="remain">剩余:</string>
     <string name="rate">/</string>
+    <string name="search_tip">输入课程名</string>
+    <string name="search">搜索</string>
 
 </resources>

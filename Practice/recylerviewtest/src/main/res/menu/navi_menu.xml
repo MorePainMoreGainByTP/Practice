@@ -14,6 +14,10 @@
             android:icon="@mipmap/my_message"
             android:title="@string/my_message" />
         <item
+            android:id="@+id/myGrade"
+            android:icon="@mipmap/mygrade"
+            android:title="@string/my_grade" />
+        <item
             android:id="@+id/notepad"
             android:icon="@mipmap/notepad"
             android:title="@string/my_notepad" />

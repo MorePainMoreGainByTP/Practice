@@ -48,7 +48,7 @@ public class CourseResTypeRecyclerAdapter extends RecyclerView.Adapter<CourseRes
         holder.download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "下载资源", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "下载中...", Toast.LENGTH_SHORT).show();
             }
         });
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,7 @@ public class CourseResTypeRecyclerAdapter extends RecyclerView.Adapter<CourseRes
                 if (holder.resType.getText().toString().equals("视频")) {
                     Toast.makeText(context, "观看视频", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "下载文件？", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "不支持在线阅读", Toast.LENGTH_SHORT).show();
                 }
             }
         });

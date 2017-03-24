@@ -27,10 +27,17 @@
         <activity android:name=".myCourse.discuss.QuestionDiscussActivity" />
         <activity android:name=".myCourse.discuss.ReleaseTopicActivity" />
         <activity android:name=".setting.SettingActivity" />
-        <activity android:name=".info.MyMessageActivity"/>
-        <activity android:name=".myDownload.MyDownloadActivity"/>
-        <activity android:name=".myCourse.coursePractice.PracticeProfileActivity"/>
-        <activity android:name=".myCourse.coursePractice.DoQuestionActivity"/>
+        <activity android:name=".info.MyMessageActivity" />
+        <activity android:name=".myDownload.MyDownloadActivity" />
+        <activity android:name=".myCourse.coursePractice.PracticeProfileActivity" />
+        <activity android:name=".myCourse.coursePractice.DoQuestionActivity" />
+        <activity
+            android:name=".searchCourse.CourseCategoryActivity"
+            android:label="课程分类"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
+        <activity android:name=".searchCourse.SearchCourseActivity" />
+        <activity android:name=".myTestGrade.CourseGradeActivity"/>
+        <activity android:name=".myTestGrade.CourseListActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

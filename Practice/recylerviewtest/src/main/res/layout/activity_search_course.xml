@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/primary"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_bg_back_white_blue"
+            android:onClick="back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/corner_rec_white_bg_no_border"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/search_bar_gray" />
+
+            <EditText
+                android:id="@+id/editSearchName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="@string/search_tip"
+                android:maxLines="1"
+                android:textSize="@dimen/lTextSize" />
+
+            <TextView
+                android:id="@+id/btnSearch"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/search"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/mTextSize"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
