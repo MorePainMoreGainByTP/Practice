@@ -53,5 +53,11 @@
     <string name="rate">/</string>
     <string name="search_tip">输入课程名</string>
     <string name="search">搜索</string>
+    <string name="course">课程</string>
+    <string name="gradeAnalyse">成绩分析</string>
+    <string name="highestScore">最高分：</string>
+    <string name="lowestScore">最低分：</string>
+    <string name="averageScore">平均分：</string>
+    <string name="rightRate">正确率：</string>
 
 </resources>

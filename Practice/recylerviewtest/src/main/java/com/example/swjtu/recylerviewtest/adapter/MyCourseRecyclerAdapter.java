@@ -69,7 +69,7 @@ public class MyCourseRecyclerAdapter extends RecyclerView.Adapter<MyCourseRecycl
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(new Intent(context, CourseGradeActivity.class));
+                    context.startActivity(new Intent(context, CourseGradeActivity.class).putExtra("courseName", course.getName()));
                 }
             });
         }
