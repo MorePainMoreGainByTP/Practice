@@ -38,6 +38,7 @@
         <activity android:name=".searchCourse.SearchCourseActivity" />
         <activity android:name=".myTestGrade.CourseGradeActivity"/>
         <activity android:name=".myTestGrade.CourseListActivity"/>
+        <activity android:name=".myCourse.coursePractice.FailureAnalysisActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

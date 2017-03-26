@@ -11,6 +11,7 @@ public class BaseQuestion implements Serializable{
     private String id;     //题目编号
     private String question;    //问题
     private int score;  //分数
+    private String analysis;
 
     public BaseQuestion(int type, String id, String question, int score ) {
         this.type = type;
@@ -51,4 +52,11 @@ public class BaseQuestion implements Serializable{
         this.score = score;
     }
 
+    public String getAnalysis() {
+        return analysis;
+    }
+
+    public void setAnalysis(String analysis) {
+        this.analysis = analysis;
+    }
 }

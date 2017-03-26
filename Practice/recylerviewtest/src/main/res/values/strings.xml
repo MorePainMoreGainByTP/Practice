@@ -59,5 +59,7 @@
     <string name="lowestScore">最低分：</string>
     <string name="averageScore">平均分：</string>
     <string name="rightRate">正确率：</string>
+    <string name="rightAnswer">正确答案：</string>
+    <string name="questionAnalysis">解析：</string>
 
 </resources>

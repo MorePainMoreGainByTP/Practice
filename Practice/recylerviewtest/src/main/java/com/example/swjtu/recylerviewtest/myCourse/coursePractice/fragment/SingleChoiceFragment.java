@@ -14,11 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.swjtu.recylerviewtest.R;
+import com.example.swjtu.recylerviewtest.entity.BaseQuestion;
 import com.example.swjtu.recylerviewtest.entity.ChoiceQuestion;
 import com.example.swjtu.recylerviewtest.entity.FillBlankQuestion;
 import com.example.swjtu.recylerviewtest.entity.JudgeQuestion;
 import com.example.swjtu.recylerviewtest.entity.MultiChoiceQuestion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -29,7 +31,7 @@ import static android.view.View.GONE;
  * Created by tangpeng on 2017/3/11.
  */
 
-public class SingleChoiceFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class SingleChoiceFragment extends Fragment implements CompoundButton.OnCheckedChangeListener,Serializable {
     private static final String TAG = "SingleChoiceFragment";
     private boolean resultIsTrue = false;   //结果是否正确
     private boolean hasFinished = false;    //是否选了答案
@@ -43,15 +45,18 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
     private EditText editFillBlank;
     private CheckBox a, b, c, d;
 
-    private int type;
+    private int type;   //题型
     private String order;
-    private ChoiceQuestion choiceQuestion;
-    private MultiChoiceQuestion multiChoiceQuestion;
-    private JudgeQuestion judgeQuestion;
-    private FillBlankQuestion fillBlankQuestion;
+
+    private ChoiceQuestion choiceQuestion;  //单选
+    private MultiChoiceQuestion multiChoiceQuestion;    //多选
+    private JudgeQuestion judgeQuestion;    //判断
+    private FillBlankQuestion fillBlankQuestion;    //填空
 
     private static String KEY_ORDER = "key_order";
     private static String KEY_TYPE = "key_type";
+
+    private ArrayList<Object> selectedAnswer = new ArrayList<>();  //选择的答案
 
     Random random = new Random();
 
@@ -160,6 +165,7 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
         choices.add("Capture the audience's attention.");
         choices.add("Find out what the audience's needs and interests are,and show how you can satisfy those needs");
         choiceQuestion = new ChoiceQuestion(type, "0", quesStr, getScore(), 4, 1, choices);
+        choiceQuestion.setAnalysis("在原文第三段末尾与第四段开头有相应的解释");
         answerA.setText(choiceQuestion.getChoices().get(0));
         answerB.setText(choiceQuestion.getChoices().get(1));
         answerC.setText(choiceQuestion.getChoices().get(2));
@@ -177,6 +183,7 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
         answers.add(1);
         answers.add(3);
         multiChoiceQuestion = new MultiChoiceQuestion(type, "0", quesStr, getScore(), 4, answers, choices);
+        multiChoiceQuestion.setAnalysis("可以使用排除法来完成这道题，首先可以在第一段、第三段与第四段找到其中的三个选项然后再分别排除");
         answerA.setText(multiChoiceQuestion.getChoices().get(0));
         answerB.setText(multiChoiceQuestion.getChoices().get(1));
         answerC.setText(multiChoiceQuestion.getChoices().get(2));
@@ -189,6 +196,7 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
         choices.add("正确");
         choices.add("错误");
         judgeQuestion = new JudgeQuestion(type, "0", quesStr, getScore(), 2, choices, 0);
+        judgeQuestion.setAnalysis("在文中第二段的第三句话“There are so ....”可以做出判断");
         answerA.setText(judgeQuestion.getChoices().get(0));
         answerB.setText(judgeQuestion.getChoices().get(1));
     }
@@ -196,6 +204,7 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
     private void fillBlank() {
         String quesStr = "According to the lecture,a suitable topic should be ___,appropriate and limited scope.";
         fillBlankQuestion = new FillBlankQuestion(type, "0", quesStr, getScore(), "hello", "请输入答案");
+        fillBlankQuestion.setAnalysis("这是检查考生对全文的理解能力。从全文来看，可以推断这是一篇关于...的文章，所以比较合适的答案是...");
         editFillBlank.setHint(fillBlankQuestion.getFillTip());
     }
 
@@ -288,9 +297,10 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
                 } else {
                     resultIsTrue = false;
                 }
+                selectedAnswer.add(answerSelected);
                 break;
             case 1:
-                ArrayList<Integer> integers = new ArrayList<>();
+                ArrayList<Object> integers = new ArrayList<>();
                 hasFinished = true;
                 if (a.isChecked()) {
                     integers.add(0);
@@ -303,11 +313,10 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
                 } else {
                     hasFinished = false;
                 }
-                Collections.sort(integers);
                 Collections.sort(multiChoiceQuestion.getAnswers());
                 if (integers.size() == multiChoiceQuestion.getAnswers().size()) {
                     for (int i = 0; i < integers.size(); i++) {
-                        if (integers.get(i) == multiChoiceQuestion.getAnswers().get(i)) {
+                        if ((int) integers.get(i) == multiChoiceQuestion.getAnswers().get(i)) {
                             continue;
                         } else {
                             resultIsTrue = false;
@@ -317,6 +326,7 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
                 } else {
                     resultIsTrue = false;
                 }
+                selectedAnswer = integers;
                 break;
             case 2:
                 int answerSelected2 = -1;
@@ -333,9 +343,11 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
                 } else {
                     resultIsTrue = false;
                 }
+                selectedAnswer.add(answerSelected2);
                 break;
             case 3:
                 String answerStr = editFillBlank.getText().toString();
+                selectedAnswer.add(answerStr);
                 hasFinished = true;
                 if (answerStr.trim().equals("")) {
                     hasFinished = false;
@@ -348,6 +360,28 @@ public class SingleChoiceFragment extends Fragment implements CompoundButton.OnC
                 break;
         }
         Log.i(TAG, "checkAnswer: hasFinished:" + hasFinished);
+    }
+
+    public BaseQuestion getQuestion() {
+        switch (type) {
+            case 0:
+                return choiceQuestion;
+            case 1:
+                return multiChoiceQuestion;
+            case 2:
+                return judgeQuestion;
+            case 3:
+                return fillBlankQuestion;
+        }
+        return null;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public ArrayList<Object> getSelectedAnswer() {
+        return selectedAnswer;
     }
 
     public boolean isResultIsTrue() {

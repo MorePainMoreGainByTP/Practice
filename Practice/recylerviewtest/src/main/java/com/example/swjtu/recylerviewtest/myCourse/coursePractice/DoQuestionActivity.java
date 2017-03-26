@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.swjtu.recylerviewtest.R;
+import com.example.swjtu.recylerviewtest.entity.BaseQuestion;
 import com.example.swjtu.recylerviewtest.myCourse.coursePractice.fragment.SingleChoiceFragment;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class DoQuestionActivity extends AppCompatActivity {
                     new AlertDialog.Builder(DoQuestionActivity.this).setMessage("时间已到,请交卷！").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            showResult(trueItems());
+                            showResult(errorItems());
                         }
                     }).setCancelable(false).create().show();
                     break;
@@ -177,7 +178,7 @@ public class DoQuestionActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this).setMessage(tip.toString()).setNegativeButton("取消", null).setPositiveButton("提交", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        showResult(trueItems());
+                        showResult(errorItems());
                         dialog.dismiss();
                     }
                 }).setCancelable(false).create().show();
@@ -185,7 +186,7 @@ public class DoQuestionActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this).setMessage("请仔细检查，确认提交").setNegativeButton("取消", null).setPositiveButton("提交", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        showResult(trueItems());
+                        showResult(errorItems());
                         dialog.dismiss();
                     }
                 }).setCancelable(false).create().show();
@@ -220,7 +221,7 @@ public class DoQuestionActivity extends AppCompatActivity {
         return integers;
     }
 
-    private ArrayList<Integer> trueItems() {
+    private ArrayList<Integer> errorItems() {
         ArrayList<Integer> rightItem = new ArrayList<>();
         for (int i = 0; i < fragments.size(); i++) {
             SingleChoiceFragment fragment = (SingleChoiceFragment) fragments.get(i);
@@ -233,7 +234,8 @@ public class DoQuestionActivity extends AppCompatActivity {
 
     private void showResult(ArrayList<Integer> result) {
         StringBuilder builder = new StringBuilder();
-        if (result.size() == 0) {
+        int errorItem = result.size();
+        if (errorItem == 0) {
             builder.append("不错哟，全部正确！");
         } else {
             builder.append("第");
@@ -245,20 +247,37 @@ public class DoQuestionActivity extends AppCompatActivity {
                     builder.append("题错误。\n");
                 }
             }
-            builder.append("正确率：" + (int) (((double) (sumIndex - result.size()) / sumIndex) * 100) + "%" + "\n继续加油！");
+            builder.append("正确率：" + (int) (((double) (sumIndex - errorItem) / sumIndex) * 100) + "%" + "\n继续加油！");
         }
-        new AlertDialog.Builder(DoQuestionActivity.this).setMessage(builder.toString()).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(DoQuestionActivity.this).setMessage(builder.toString()).setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DoQuestionActivity.this.finish();
             }
-        }).
-                setNegativeButton("错题解析", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DoQuestionActivity.this.finish();
+        });
+        if (errorItem != 0)
+            builder1.setNegativeButton("错题解析", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ArrayList<Integer> integers = errorItems();
+                    Intent intent = new Intent(DoQuestionActivity.this,FailureAnalysisActivity.class);
+                    ArrayList<BaseQuestion> baseQuestions = new ArrayList<BaseQuestion>();
+                    ArrayList<ArrayList<Object>> selectedAnswers = new ArrayList<>();
+                    for (int i = 0; i < integers.size(); i++) {
+                        SingleChoiceFragment singleChoiceFragment = (SingleChoiceFragment) fragments.get(integers.get(i)-1);
+                        baseQuestions.add(singleChoiceFragment.getQuestion());
+                        selectedAnswers.add(singleChoiceFragment.getSelectedAnswer());
                     }
-                }).create().show();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("baseQuestions",baseQuestions);
+                    bundle.putSerializable("selectedAnswers",selectedAnswers);
+                    bundle.putInt("sumIndex",integers.size());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    DoQuestionActivity.this.finish();
+                }
+            });
+        builder1.create().show();
     }
 
     public void back(View v) {
