@@ -61,5 +61,6 @@
     <string name="rightRate">正确率：</string>
     <string name="rightAnswer">正确答案：</string>
     <string name="questionAnalysis">解析：</string>
+    <string name="questionAnalysis1">解析</string>
 
 </resources>

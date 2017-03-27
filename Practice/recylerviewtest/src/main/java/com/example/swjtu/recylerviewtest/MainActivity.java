@@ -35,6 +35,7 @@ import com.example.swjtu.recylerviewtest.info.MyMessageActivity;
 import com.example.swjtu.recylerviewtest.loginRegister.LoginActivity;
 import com.example.swjtu.recylerviewtest.myCourse.MyCourseListActivity;
 import com.example.swjtu.recylerviewtest.myDownload.MyDownloadActivity;
+import com.example.swjtu.recylerviewtest.myErrorQuestion.ErrorQueCourseListActivity;
 import com.example.swjtu.recylerviewtest.myTestGrade.CourseListActivity;
 import com.example.swjtu.recylerviewtest.searchCourse.CourseCategoryActivity;
 import com.example.swjtu.recylerviewtest.searchCourse.SearchCourseActivity;
@@ -140,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         startActivity(new Intent(MainActivity.this, InfoActivity.class));
                         break;
                     case R.id.notepad:
+                        startActivity(new Intent(MainActivity.this, ErrorQueCourseListActivity.class));
                         break;
                     case R.id.setting:
                         startActivity(new Intent(MainActivity.this, SettingActivity.class));

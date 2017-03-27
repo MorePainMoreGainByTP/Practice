@@ -39,6 +39,8 @@
         <activity android:name=".myTestGrade.CourseGradeActivity"/>
         <activity android:name=".myTestGrade.CourseListActivity"/>
         <activity android:name=".myCourse.coursePractice.FailureAnalysisActivity"/>
+        <activity android:name=".myErrorQuestion.ErrorQueCourseListActivity"/>
+        <activity android:name=".myErrorQuestion.ErrorQuesActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
