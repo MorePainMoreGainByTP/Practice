@@ -36,11 +36,14 @@
             android:label="课程分类"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert" />
         <activity android:name=".searchCourse.SearchCourseActivity" />
-        <activity android:name=".myTestGrade.CourseGradeActivity"/>
-        <activity android:name=".myTestGrade.CourseListActivity"/>
-        <activity android:name=".myCourse.coursePractice.FailureAnalysisActivity"/>
-        <activity android:name=".myErrorQuestion.ErrorQueCourseListActivity"/>
-        <activity android:name=".myErrorQuestion.ErrorQuesActivity"/>
+        <activity android:name=".myTestGrade.CourseGradeActivity" />
+        <activity android:name=".myTestGrade.CourseListActivity" />
+        <activity android:name=".myCourse.coursePractice.FailureAnalysisActivity" />
+        <activity android:name=".myErrorQuestion.ErrorQueCourseListActivity" />
+        <activity android:name=".myErrorQuestion.ErrorQuesActivity" />
+        <activity
+            android:name=".WatchVideoOnline.VideoOnlineActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

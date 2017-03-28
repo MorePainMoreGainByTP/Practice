@@ -1,6 +1,7 @@
 package com.example.swjtu.recylerviewtest.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
+import com.example.swjtu.recylerviewtest.WatchVideoOnline.VideoOnlineActivity;
 import com.example.swjtu.recylerviewtest.entity.CourseResource;
 
 import java.util.List;
@@ -56,6 +58,7 @@ public class CourseResTypeRecyclerAdapter extends RecyclerView.Adapter<CourseRes
             public void onClick(View v) {
                 if (holder.resType.getText().toString().equals("视频")) {
                     Toast.makeText(context, "观看视频", Toast.LENGTH_SHORT).show();
+                    context.startActivity(new Intent(context, VideoOnlineActivity.class));
                 } else {
                     Toast.makeText(context, "不支持在线阅读", Toast.LENGTH_SHORT).show();
                 }

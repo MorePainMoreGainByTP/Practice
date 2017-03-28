@@ -62,5 +62,6 @@
     <string name="rightAnswer">正确答案：</string>
     <string name="questionAnalysis">解析：</string>
     <string name="questionAnalysis1">解析</string>
+    <string name="video_introduce">视频介绍：</string>
 
 </resources>
