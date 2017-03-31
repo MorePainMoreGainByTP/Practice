@@ -32,7 +32,15 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             app:uvv_scalable="true" />
-
+        <CheckBox
+            android:id="@+id/checkPlayPause"
+            android:visibility="gone"
+            android:button="@null"
+            android:background="@drawable/selecter_paly_pause"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="13dp"/>
     </FrameLayout>
 
     <LinearLayout

@@ -26,13 +26,17 @@
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />
 
-            <Button
+            <TextView
                 android:layout_width="110dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:background="@drawable/btn_corner_rect_press"
+                android:gravity="center"
+                android:scaleType="centerCrop"
                 android:text="@string/join_course"
+                android:textColor="@color/white"
                 android:textStyle="bold"
+                android:clickable="true"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar

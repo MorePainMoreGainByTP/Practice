@@ -2,6 +2,7 @@ package com.example.swjtu.recylerviewtest.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
+
+import com.example.swjtu.recylerviewtest.courseCategory.CourseListActivity;
 
 /**
  * Created by tangpeng on 2017/3/5.
@@ -48,24 +51,36 @@ public class CourseCategoryRecyclerAdapter extends RecyclerView.Adapter<CourseCa
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, CourseListActivity.class);
+                String category = "";
                 switch (position) {
                     case 0:
+                        category = "计算机";
                         break;
                     case 1:
+                        category = "经济管理";
                         break;
                     case 2:
+                        category = "外语学习";
                         break;
                     case 3:
+                        category = "文学历史";
                         break;
                     case 4:
+                        category = "工学";
                         break;
                     case 5:
+                        category = "理学";
                         break;
                     case 6:
+                        category = "生命科学";
                         break;
                     case 7:
+                        category = "全部课程";
                         break;
                 }
+                intent.putExtra("category", category);
+                context.startActivity(intent);
                 ((Activity) context).finish();
             }
         });
