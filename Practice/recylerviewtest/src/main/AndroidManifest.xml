@@ -44,6 +44,7 @@
         <activity
             android:name=".WatchVideoOnline.VideoOnlineActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".searchCourse.OneCategoryCourseActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

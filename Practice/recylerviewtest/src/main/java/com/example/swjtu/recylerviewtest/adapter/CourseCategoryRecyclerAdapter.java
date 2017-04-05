@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.swjtu.recylerviewtest.R;
-
-import com.example.swjtu.recylerviewtest.courseCategory.CourseListActivity;
+import com.example.swjtu.recylerviewtest.searchCourse.OneCategoryCourseActivity;
 
 /**
  * Created by tangpeng on 2017/3/5.
@@ -51,7 +50,7 @@ public class CourseCategoryRecyclerAdapter extends RecyclerView.Adapter<CourseCa
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CourseListActivity.class);
+                Intent intent = new Intent(context, OneCategoryCourseActivity.class);
                 String category = "";
                 switch (position) {
                     case 0:
