@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -13,11 +14,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.swjtu.secondcode.entity.Book;
+import com.example.swjtu.secondcode.entity.Category;
 import com.example.swjtu.secondcode.immersiveMode.ImmersiveModeActivity;
 import com.example.swjtu.secondcode.percentLayout.PercentFrameActivity;
 import com.example.swjtu.secondcode.percentLayout.PercentRelativeActivity;
 import com.example.swjtu.secondcode.phonePadCompatible.NewsActivity;
 import com.example.swjtu.secondcode.singleInstance.AnotherTaskActivity;
+
+import org.litepal.LitePal;
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
+
+import static org.litepal.crud.DataSupport.findAll;
 
 /**
  *
@@ -55,6 +65,71 @@ public class MainActivity extends BaseActivity {
         Log.i(TAG, "onCreate: MainActivity Start");
     }
 
+    //修改数据库的表结构，以及向数据库添加新表
+    public void onUpdateDB(View v) {
+        //只需要将Book中增加一个属性，并把xml中的version修改，即可修改表结构
+        //在xml中list元素下，添加mapping元素即可自动创建表
+
+        Category category = new Category();
+        category.setCategoryCode(101);
+        category.setCategoryName("计算机技术");
+        category.save();
+        List<Category> categories = findAll(Category.class);
+        for (Category category1 : categories) {
+            Log.i(TAG, "id:" + category1.getId() + ",CategoryName: " + category1.getCategoryName() + ",CategoryCode: " + category1.getCategoryCode());
+        }
+        //更新数据
+        Book book2 = new Book();
+        book2.setPress("swjtu");
+        book2.setPrice(111);
+        book2.updateAll("price < ? and pages > ?", "1000", "1");  //相当于where条件子句
+        //将某列数据全部设为 该列数据类型的默认值（比如int 默认值为0）
+        //book2.setToDefault("pages");
+        //book2.updateAll();    //更新所有行数据
+
+        DataSupport.deleteAll(Book.class, "price > ? ", "1000");
+        Book book3 = DataSupport.findFirst(Book.class);
+        Book book4 = DataSupport.findLast(Book.class);
+
+        List<Book> books2 = DataSupport.select("name", "pages", "author")
+                .where("pages > ?", "100")
+                .order("price")
+                .limit(10)  //限制10条数据
+                .offset(10) //从第10条以后开始搜索
+                .find(Book.class);
+        Cursor cursor = DataSupport.findBySQL("select * from Book where pages > ? and price < ?", "200", "100");
+        /*
+        Book book1 = new Book();
+        book1.setAuthor("lisi");
+        book1.setName("mysql");
+        book1.setPages(102);
+        book1.setPrice(345.1);
+        book1.setPress("swjtu--sichuan");
+        book1.save();
+        */
+        List<Book> books = DataSupport.findAll(Book.class);
+        for (Book book : books) {
+            Log.i(TAG, "id:" + book.getId() + ",author: " + book.getAuthor() + ",name: " + book.getName() + ",pages: " + book.getPages() + ",price: " + book.getPrice() + ",press:" + book.getPress());
+        }
+//        book1.setPress("swjtu");
+//        book1.save();
+//        books = DataSupport.findAll(Book.class);
+//        for (Book book : books) {
+//            Log.i(TAG, "id:" + book.getId() + ",author: " + book.getAuthor() + ",name: " + book.getName() + ",pages: " + book.getPages() + ",price: " + book.getPrice() + ",press:" + book.getPress());
+//        }
+
+    }
+
+    public void onLitePal(View v) {
+        LitePal.getDatabase();  //任何一次数据库操作都会创建数据库，若不存在
+        Book book = new Book();
+        book.setAuthor("tp");
+        book.setName("java");
+        book.setPages(66);
+        book.setPrice(89.3);
+        book.save();
+    }
+
     //动态启动广播接收器，不用在Manifest中注册，当activity销毁时，需要解绑
     public void startDynamicBroadcast(View v) {
         //设置广播过滤条件
@@ -76,7 +151,7 @@ public class MainActivity extends BaseActivity {
     //有序广播
     public void orderBroadcast(View v) {
         Intent intent = new Intent("com.example.swjtu.secondcode.ORDER_BROADCAST");
-        sendOrderedBroadcast(intent,null);  //发送全局广播，所有app都能收到
+        sendOrderedBroadcast(intent, null);  //发送全局广播，所有app都能收到
     }
 
     //一般的全局（整个手机）广播
