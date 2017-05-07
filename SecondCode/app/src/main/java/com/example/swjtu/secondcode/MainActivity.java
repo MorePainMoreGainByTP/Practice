@@ -1,14 +1,19 @@
 package com.example.swjtu.secondcode;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
@@ -63,6 +68,38 @@ public class MainActivity extends BaseActivity {
         sendBroadcast(new Intent("hello.world"));
         localBroadcastManager = LocalBroadcastManager.getInstance(this);
         Log.i(TAG, "onCreate: MainActivity Start");
+    }
+
+    public void onCall(View v){
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){//如果没有授权
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
+        }else{
+            makeCall();
+        }
+    }
+
+    private void makeCall(){
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:10086"));
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 1:
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    makeCall();
+                }else{
+                    Toast.makeText(this, "You denied the permission!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
     //修改数据库的表结构，以及向数据库添加新表
