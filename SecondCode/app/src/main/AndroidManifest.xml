@@ -6,6 +6,7 @@
     <!-- 手机启动时发送的广播 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -63,6 +64,7 @@
         <activity
             android:name=".immersiveMode.ImmersiveModeActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".contentResolver.ContactsPhoneActivity"/>
 
         <receiver
             android:name=".broadcast.PowerOnReceiver"

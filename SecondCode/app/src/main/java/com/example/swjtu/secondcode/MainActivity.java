@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.swjtu.secondcode.contentResolver.ContactsPhoneActivity;
 import com.example.swjtu.secondcode.entity.Book;
 import com.example.swjtu.secondcode.entity.Category;
 import com.example.swjtu.secondcode.immersiveMode.ImmersiveModeActivity;
@@ -70,15 +71,19 @@ public class MainActivity extends BaseActivity {
         Log.i(TAG, "onCreate: MainActivity Start");
     }
 
-    public void onCall(View v){
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){//如果没有授权
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
-        }else{
+    public void onContacts(View v) {
+        startActivity(new Intent(this, ContactsPhoneActivity.class));
+    }
+
+    public void onCall(View v) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {//如果没有授权
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+        } else {
             makeCall();
         }
     }
 
-    private void makeCall(){
+    private void makeCall() {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:10086"));
         try {
@@ -91,11 +96,11 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
+        switch (requestCode) {
             case 1:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     makeCall();
-                }else{
+                } else {
                     Toast.makeText(this, "You denied the permission!", Toast.LENGTH_SHORT).show();
                 }
                 break;
